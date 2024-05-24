@@ -8,7 +8,7 @@ import (
 func main() {
 
 	// Using packages
-	fmt.Println("Hello, World!") // Everything after the dot has to be capitalized
+	fmt.Println("Hello, World!") // The letter after the dot has to be capitalized
 
 	// Variable declaration and initialization
 	var num int = 1
