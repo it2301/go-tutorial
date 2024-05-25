@@ -3,12 +3,19 @@ package main
 import (
 	"fmt"
 	"sync"
+
+	cowsay "github.com/Code-Hex/Neo-cowsay"
 )
 
-func syntax() {
+func basics() {
+	// Here is an example of how to use external packages in Go
+	cow_str, err := cowsay.Say(cowsay.Phrase("Hello, World!")) // Here is used the cowsay.Say function that returns a string and an error
+	if err != nil {                                            // If there is an error, it will be printed
+		fmt.Println(err)
+		return
+	}
 
-	// Using packages
-	fmt.Println("Hello, World!") // The letter after the dot has to be capitalized
+	fmt.Println(cow_str) // The string will be printed
 
 	// Variable declaration and initialization
 	var num int = 1
@@ -40,18 +47,32 @@ func syntax() {
 	num++
 	num--
 
-	// Arrays
-	arr := [5]int{1, 2, 2, 3, 4}
-	arr[0] = 0
-	arr[1] = 1
+	// Pointers
+	pointer := &num
+	*pointer = 1
 
-	// Slices
-	slice := []int{1, 2, 3}
-	slice = append(slice, 4)       // Appends to a slice at the end
-	slice = append(slice, 5, 6, 7) // Appends multiple values to a slice at the end
-	slice = slice[1:3]             // Returns a slice from index 1 to 2
-	slice = slice[:2]              // Returns a slice from index 0 to 1
-	slice = slice[1:]              // Returns a slice from index 1 to end
+	// Constants
+	const constant = 1 // They never change
+
+	// Unused variables
+	_ = 1 // It is used when you don't want to use a variable that a function returns, for example
+
+	// Using arrays
+	arr := [5]int{1, 2, 3, 4, 5} // Here is an array of integers
+	fmt.Println(arr)             // The array will be printed
+	fmt.Println(arr[0])          // The first element of the array will be printed
+
+	start := 1
+	end := 4
+	fmt.Println(arr[start:end]) // The elements from the start index to the end index - 1 will be printed
+	fmt.Println(arr[:end])      // The elements from the start of the array to the end index - 1 will be printed
+	fmt.Println(arr[start:])    // The elements from the start index to the end of the array will be printed
+	fmt.Println(len(arr))       // The length of the array will be printed
+
+	// Using slices, it is the same as arrays but with the function append to add elements to it
+	slice := []int{1, 2, 3, 4, 5} // Here is a slice of integers
+	slice = append(slice, 6)      // The append function is used to add an element to the slice
+	fmt.Println(slice)            // The slice will be printed
 
 	// Maps
 	m := map[string]int{"one": 1, "two": 2}
@@ -66,16 +87,6 @@ func syntax() {
 	}
 
 	p := Person{Name: "John", Age: 30}
-
-	// Pointers
-	pointer := &num
-	*pointer = 1
-
-	// Constants
-	const constant = 1
-
-	// Unused variables
-	_ = 1
 
 	// Conditional statements
 	if num == 1 {
@@ -135,14 +146,10 @@ func syntax() {
 	}
 
 	// Function calls
-	print_hello()
-	num = add(1, 2)
-	num, num2 = add_sub(1, 2)
-	num = sum(1, 2, 3, 4, 5)
-
-	// Defer
-	defer fmt.Println("World") // Executes after the function gets to the end
-	fmt.Println("Hello")
+	print_hello()             // No return value
+	num = add(1, 2)           // Single return value
+	num, num2 = add_sub(1, 2) // Multiple return values
+	num = sum(1, 2, 3, 4, 5)  // Undefined number of arguments
 
 	// Goroutines
 	go func() { // Runs in a separate thread and the program doesn't wait for it to finish
@@ -162,11 +169,10 @@ func syntax() {
 	}()
 	wg.Wait() // Waits for all goroutines to finish
 
-	// Disable unused variable warning
-	fmt.Println(num, num2, num3, num4, num5, num6, num7, num8, num9, num10, num11, num12, arr, slice, p, m, pointer, constant)
+	// Disable unused variable error
+	fmt.Println(constant, num, num2, num3, num4, num5, num6, num7, num8, num9, num10, num11, num12, m, p)
 }
 
-/*
 // Function without return value
 func print_hello() {
 	fmt.Println("Hello")
@@ -190,4 +196,8 @@ func sum(nums ...int) int {
 	}
 	return total
 }
-*/
+
+func defer_example() {
+	defer fmt.Println("World") // Executes after the function gets to the end
+	fmt.Println("Hello")
+}
