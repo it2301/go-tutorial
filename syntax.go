@@ -5,7 +5,7 @@ import (
 	"sync"
 )
 
-func main() {
+func syntax() {
 
 	// Using packages
 	fmt.Println("Hello, World!") // The letter after the dot has to be capitalized
