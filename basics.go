@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 	"sync"
 
 	cowsay "github.com/Code-Hex/Neo-cowsay"
@@ -32,8 +33,9 @@ func basics() {
 	var num8 float64
 	var num9 complex64
 	var num10 complex128
-	var num11 byte
-	var num12 string
+	var byte1 byte
+	var string1 string
+	var boolean bool
 
 	// Assigning value to variable
 	num = 1
@@ -87,6 +89,19 @@ func basics() {
 	}
 
 	p := Person{Name: "John", Age: 30}
+
+	// Strings
+	str := "Hello, World!"
+	fmt.Println(str)
+	fmt.Println(str[0])                            // The first character of the string will be printed
+	fmt.Println(str[1:5])                          // The characters from the first index to the fifth index - 1 will be printed
+	fmt.Println(len(str))                          // The length of the string will be printed
+	strings.Contains(str, "Hello")                 // Checks if the string contains a substring and returns a boolean
+	strings.Replace(str, "Hello", "Hi", 1)         // Replaces a substring with another substring and returns a new string
+	strings.ToLower(str)                           // Converts the string to lowercase and returns a new string
+	strings.ToUpper(str)                           // Converts the string to uppercase and returns a new string
+	strings.Split(str, ",")                        // Splits the string by a delimiter and returns a slice of strings
+	str = fmt.Sprintf("This is a number: %d", num) // Converts a number to a string
 
 	// Conditional statements
 	if num == 1 {
@@ -170,7 +185,7 @@ func basics() {
 	wg.Wait() // Waits for all goroutines to finish
 
 	// Disable unused variable error
-	fmt.Println(constant, num, num2, num3, num4, num5, num6, num7, num8, num9, num10, num11, num12, m, p)
+	fmt.Println(constant, num, num2, num3, num4, num5, num6, num7, num8, num9, num10, byte1, string1, m, p, boolean)
 }
 
 // Function without return value
